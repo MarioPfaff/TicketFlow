@@ -16,7 +16,7 @@ TicketFlow is een open-source ticketsysteem gebouwd met behulp van het Ruby on R
 Volg deze stappen om TicketFlow op je lokale ontwikkelomgeving te installeren:
 
 1. Zorg ervoor dat je Ruby en Ruby on Rails hebt geïnstalleerd op je systeem.
-2. Clone de TicketFlow-repository naar je lokale machine: `git clone https://github.com/jouw-gebruikersnaam/ticketflow.git`
+2. Clone de TicketFlow-repository naar je lokale machine: `git clone https://github.com/MarioPfaff/ticketflow.git`
 3. Navigeer naar de projectdirectory: `cd ticketflow`
 4. Installeer de afhankelijkheden met Bundler: `bundle install`
 5. Maak de databases aan: `rails db:create`
@@ -56,4 +56,4 @@ TicketFlow is gelicentieerd onder de [MIT-licentie](https://opensource.org/licen
 
 ## Auteurs
 
-TicketFlow is ontwikkeld door [Jouw Naam](https://github.com/jouw-gebruikersnaam) en bijdragers.
+TicketFlow is ontwikkeld door [Mario Pfaff](https://github.com/MarioPfaff) en bijdragers.
