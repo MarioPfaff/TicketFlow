@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  resources :tickets # This adds all the paths at once: edit, new, destroy, show.
+  root 'tickets#index'
   devise_for :users, controllers: {
     passwords: 'passwords',
     registrations: 'registrations',
