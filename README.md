@@ -56,4 +56,4 @@ TicketFlow is gelicentieerd onder de [MIT-licentie](https://opensource.org/licen
 
 ## Auteurs
 
-TicketFlow is ontwikkeld door [Jouw Naam](https://github.com/jouw-gebruikersnaam) en bijdragers.
+TicketFlow is ontwikkeld door Mario Pfaff(https://github.com/MarioPfaff) en Luca van Malsen (https://github.com/lucavm203).
