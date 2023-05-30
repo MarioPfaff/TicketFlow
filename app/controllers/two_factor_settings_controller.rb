@@ -1,7 +1,17 @@
+# method [authenticate_user] they main "variable" that explains that you use the "user class"
+# @note  globalvar [current_user] the function from devise that is for the user
 class TwoFactorSettingsController < ApplicationController
+
   before_action :authenticate_user!
-  # Makes sure the user can't do it twice
-  # @[otp_required_for_login] is a function from devise
+
+
+  # Makes sure the user can't do it twice to
+  # 1 make a new 2 step connection
+  # 2 is you have it send you to the backup code form
+
+  # @param method [otp_required_for_login] is a function from devise
+  # @return send to edit (backup code page)
+  # @return generate_two_factor_secret_if_missing! the bang method (!) makes sure that the value is changed at this point from what is gets.
   def new
     if current_user.otp_required_for_login
       flash[:alert] = 'Two Factor Authentication is already enabled.'
@@ -10,6 +20,15 @@ class TwoFactorSettingsController < ApplicationController
 
     current_user.generate_two_factor_secret_if_missing!
   end
+
+  # @param method [valid_password?] is a method from de otp_password check. it check if the password is correct that has been putin
+  # @param var [enable_2fa_params] what is it.
+  #  password is the password put in the form field password.
+  #  code is the code put in the form field code.
+  # @param method [validate_and_consume_otp] checks if the code is correct and use it
+  # @return render the new page two times
+  # @return send to edit (backup code page)
+  # @return set enable_two_factor to true
 
   def create
     unless current_user.valid_password?(enable_2fa_params[:password])
