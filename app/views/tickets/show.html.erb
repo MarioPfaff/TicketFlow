@@ -3,8 +3,8 @@
 <%= render @ticket %>
 
 <div>
-  <%= link_to "Edit this ticket", edit_ticket_path(@ticket) %> |
-  <%= link_to "Back to tickets", tickets_path %>
+  <%= link_to "Verander ticket", edit_ticket_path(@ticket) %> |
+  <%= link_to "Terug naar alle tickets", tickets_path %>
 
-  <%= button_to "Destroy this ticket", @ticket, method: :delete %>
+  <%= button_to "Verwijder deze ticket", @ticket, method: :delete, class: "btn btn-danger" %>
 </div>
