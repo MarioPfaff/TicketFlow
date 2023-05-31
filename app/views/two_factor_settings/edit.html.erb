@@ -28,7 +28,13 @@
           </div>
           <div class="card-body">
             <p>Two factor authentication has been successfully enabled.</p>
-            <%= link_to('download', two_factor_settings_download_path(:backup_codes => @backup_codes), class: 'btn btn-primary') %>
+                        <%= button_to(
+                    "Log Out",
+                    destroy_user_session_path,
+                    class: 'btn btn-primary',
+                    method: :delete
+                  ) %>
+            <%= button_to('download', download_two_factor_settings_path(:backup_codes => @backup_codes), class: 'btn btn-primary', method: :post) %>
           </div>
         </div>
         <div class="card">

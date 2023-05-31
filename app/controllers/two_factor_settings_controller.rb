@@ -48,8 +48,12 @@ class TwoFactorSettingsController < ApplicationController
   end
 
   # edit is they page for showing the backup codes. so everything here has to do with the backup code list.
-
-
+  # @param method [otp_required_for_login] checks if you have OTP activated
+  # @return go to the activate page
+  # @param method [two_factor_backup_codes_generated] check if the backup code are there so yes than say that
+  # @return go to account settingen edit page.
+  #
+  # @return else generate backup codes and save thos for user
 
   def edit
     unless current_user.otp_required_for_login
@@ -57,10 +61,10 @@ class TwoFactorSettingsController < ApplicationController
       return redirect_to new_two_factor_settings_path
     end
 
-    if current_user.two_factor_backup_codes_generated?
-      flash[:alert] = 'You have already seen your backup codes.'
-      return redirect_to edit_user_registration_path
-    end
+    # if current_user.two_factor_backup_codes_generated?
+    #   flash[:alert] = 'You have already seen your backup codes.'
+    #   return redirect_to edit_user_registration_path
+    # end
 
     @backup_codes = current_user.generate_otp_backup_codes!
     current_user.save!
