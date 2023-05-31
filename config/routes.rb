@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resource :two_factor_settings, except: [:index, :show] do
     member do
-      post :download, to: 'two_factor_settings#generateFile'
+      get :download, to: 'two_factor_settings#generateFile'
     end
   end
 

@@ -72,7 +72,11 @@ class TwoFactorSettingsController < ApplicationController
 
   def generateFile
     @data = restyle_backup
-    send_data @data, filename: "backup_code.txt", type: "text/plain", disposition: 'attachment'
+
+    respond_to do |format|
+      format.txt { send_data( @data, disposition: "attachment", filename: "backup_code.txt", type: "text/plain")}
+      format.turbo_stream
+    end
   end
 
   def destroy
