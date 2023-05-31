@@ -1,7 +1,7 @@
 # method [authenticate_user] they main "variable" that explains that you use the "user class"
 # @note  globalvar [current_user] the function from devise that is for the user
 class TwoFactorSettingsController < ApplicationController
-
+  protect_from_forgery
   before_action :authenticate_user!
 
 
@@ -47,6 +47,10 @@ class TwoFactorSettingsController < ApplicationController
     end
   end
 
+  # edit is they page for showing the backup codes. so everything here has to do with the backup code list.
+
+
+
   def edit
     unless current_user.otp_required_for_login
       flash[:alert] = 'Please enable two factor authentication first.'
@@ -60,6 +64,11 @@ class TwoFactorSettingsController < ApplicationController
 
     @backup_codes = current_user.generate_otp_backup_codes!
     current_user.save!
+  end
+
+  def generateFile
+    @data = restyle_backup
+    send_data @data, filename: "backup_code.txt", type: "text/plain", disposition: 'attachment'
   end
 
   def destroy
@@ -76,6 +85,15 @@ class TwoFactorSettingsController < ApplicationController
 
   def enable_2fa_params
     params.require(:two_fa).permit(:code, :password)
+  end
+
+  def restyle_backup
+    @styleone = params[:backup_codes]
+    @styletwo = @styleone.map { |i| "'" + i.to_s + "'" }.join(",")
+    @styletwo.delete!("\n")
+    @styletwo.delete!("'")
+    @styletwo.gsub!(/,/, "\n")
+    return @styletwo
   end
 
 end
