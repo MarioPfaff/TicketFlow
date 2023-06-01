@@ -34,7 +34,7 @@
                     class: 'btn btn-primary',
                     method: :delete
                   ) %>
-            <%= button_to('download', download_two_factor_settings_path(request.params.merge(format: :txt, )), class: 'btn btn-primary', data: {turbolinks: true}, method: :get, params: {:backup_codes => @backup_codes }) %>
+            <%= button_to('download', download_two_factor_settings_path, class: 'btn btn-primary', data: {turbo: false},  params: {:backup_codes => @backup_codes}) %>
           </div>
         </div>
         <div class="card">

@@ -1,7 +1,7 @@
 # method [authenticate_user] they main "variable" that explains that you use the "user class"
 # @note  globalvar [current_user] the function from devise that is for the user
 class TwoFactorSettingsController < ApplicationController
-  protect_from_forgery
+
   before_action :authenticate_user!
 
 
@@ -73,10 +73,10 @@ class TwoFactorSettingsController < ApplicationController
   def generateFile
     @data = restyle_backup
 
-    respond_to do |format|
-      format.txt { send_data( @data, disposition: "attachment", filename: "backup_code.txt", type: "text/plain")}
-      format.turbo_stream
-    end
+
+    send_data( @data, disposition: "attachment", filename: "backup_code.txt", type: "text/plain")
+
+
   end
 
   def destroy
