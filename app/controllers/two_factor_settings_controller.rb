@@ -72,11 +72,7 @@ class TwoFactorSettingsController < ApplicationController
 
   def generateFile
     @data = restyle_backup
-
-
     send_data( @data, disposition: "attachment", filename: "backup_code.txt", type: "text/plain")
-
-
   end
 
   def destroy
