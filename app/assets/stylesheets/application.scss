@@ -16,3 +16,19 @@
     color: #fff;
     transition: all 0.3s;
 }
+
+.status, .open_status, .closed_status, .hold_status {
+    font-size: 20px;
+}
+
+.open_status {
+    color: green;
+}
+
+.closed_status {
+    color: red;
+}
+
+.hold_status {
+    color: orange;
+}

@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_113749) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_111743) do
   create_table "tickets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.string "label"
-    t.integer "status"
+    t.string "label", limit: 20, default: "Niet gecategoriseerd"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.bigint "users_id"
+    t.integer "priority", default: 0
+    t.index ["user_id"], name: "index_tickets_on_user_id"
     t.index ["users_id"], name: "index_tickets_on_users_id"
   end
 

@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-  has_many :tickets, dependent: :destroy
-  # Path: app/models/user.rb
-  # Makes a relation to tickets. Dependent allows it to destroy the ticket if the user is destroyed.
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -57,4 +54,6 @@ class User < ApplicationRecord
   def two_factor_backup_codes_generated?
     otp_backup_codes.present?
   end
+
+  has_many :tickets, dependent: :destroy
 end

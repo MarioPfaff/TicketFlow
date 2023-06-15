@@ -1,6 +1,16 @@
 class Ticket < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, optional: true
+    enum :status, {
+        :open => 1,
+        :closed => 2,
+        :hold => 3
+    }
 
-    # Path: app/models/user.rb
-    # Makes a relation to users.
+    enum :priority, {
+        :low => 1,
+        :medium => 2,
+        :high => 3,
+        :urgent => 4
+    }
+    
 end
