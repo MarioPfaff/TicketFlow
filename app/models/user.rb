@@ -5,22 +5,24 @@ class User < ApplicationRecord
   devise :invitable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
 
-
   devise :invitable, :two_factor_authenticatable, :two_factor_backupable,
          otp_backup_code_length: 10, otp_number_of_backup_codes: 10,
          :otp_secret_encryption_key => ENV['OTP_SECRET_KEY']
 
   serialize :otp_backup_codes, JSON
 
+  after_commit :add_defualt_avatar, on: %i[create update]
+  validate :password_complexity
+  has_many :tickets
   attr_accessor :otp_plain_backup_codes
-
+  has_one_attached :avatar
   # Generate an OTP secret it it does not already exist
   def generate_two_factor_secret_if_missing!
     return unless otp_secret.nil?
     update!(otp_secret: User.generate_otp_secret)
   end
 
-  validate :password_complexity
+
 
   def password_complexity
     # Regexp extracted from https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
@@ -55,5 +57,28 @@ class User < ApplicationRecord
     otp_backup_codes.present?
   end
 
-  has_many :tickets, dependent: :destroy
+  
+  def avatar_thumbnail
+    avatar.variant(resize_to_limit: [150, 150]).processed if avatar.attached?
+  end
+
+
+  private
+  def postpone_email_change_until_confirmation_and_regenerate_confirmation_token
+    @reconfirmation_required = true
+    self.unconfirmed_email = email
+    # self.email = self.email_was
+    self.confirmed_at = nil
+    self.confirmation_token = nil
+    generate_confirmation_token
+  end
+
+  def add_defualt_avatar
+    return if avatar.attached?
+      avatar.attach(
+        io: File.open(Rails.root.join('app', 'assets', 'images', 'default_avatar.png')),
+        filename: 'default_avatar.png',
+        content_type: 'image/png'
+      )
+  end
 end

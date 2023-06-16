@@ -24,6 +24,21 @@
         </div>
         <div class="card">
           <div class="card-header">
+            Download backup_codes
+          </div>
+          <div class="card-body">
+            <p>Two factor authentication has been successfully enabled.</p>
+                        <%= button_to(
+                    "Log Out",
+                    destroy_user_session_path,
+                    class: 'btn btn-primary',
+                    method: :delete
+                  ) %>
+            <%= button_to('download', download_two_factor_settings_path, class: 'btn btn-primary', data: {turbo: false},  params: {:backup_codes => @backup_codes}) %>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
             Two Factor Setup Complete
           </div>
           <div class="card-body">
