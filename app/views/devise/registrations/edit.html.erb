@@ -4,15 +4,11 @@
     <div class="col-6">
       <div class="card">
         <div class="card-header">
-          Edit <%= resource_name.to_s.humanize %> password
+          Change <%= resource_name.to_s.humanize %> Password
         </div>
         <div class="card-body">
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
-            <div class="field">
-              <%= image_tag(resource.avatar_thumbnail) if resource.avatar.attached?%>
-            </div>
-            <%= f.file_field :avatar, direct_upload: true %>
             <%= f.input :email, autofocus: true, autocomplete: 'email' , hint: "(leave it the same if you don't want to change it)"%>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -26,6 +22,27 @@
           <% end %>
         </div>
       </div>
+      <br />
+
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
+      <div class="card">
+        <div class="card-header">
+          User Settings
+        </div>
+        
+        <div class="card-body">
+            <div class="field">
+              <%= image_tag(resource.avatar_thumbnail, class: "profile_image") if resource.avatar.attached?%> <%= f.file_field :avatar, direct_upload: true %>
+            
+              <%= f.input :first_name %>
+              <%= f.input :last_name %>
+
+              <%= f.input :current_password, autocomplete: "new-password", hint: "(we need your current password to confirm your changes)" %>
+              <%= f.submit "Update", class: 'btn btn-primary' %>
+              </div>
+            </div>
+      </div>
+    <% end %>
       <br />
       <div class="card">
         <div class="card-header">
@@ -51,6 +68,7 @@
           <p>Account Verwijderen? <%= button_to "Verwijder mijn account", registration_path(resource_name),   data: { turbo_confirm: "Zeker weten?" } , method: :delete, class: 'btn btn-danger' %></p>
         </div>
       </div>
+      <br/>
     </div>
   </div>
 </div>

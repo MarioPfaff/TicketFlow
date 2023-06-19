@@ -1,33 +1,48 @@
 <div id="<%= dom_id ticket %>">
-  <p>
-    <strong>Titel:</strong>
-    <%= ticket.title %>
-  </p>  
+  <div class="fluid-container">
+    <div class="row align-items-center border rounded shadow-sm m-0">      
+    <div class="col-1">
+        <%= image_tag(ticket.user.avatar_thumbnail, class: "profile_image") %>
+      </div> 
 
-  <p>
-    <strong>Beschrijving:</strong>
-    <%= ticket.content %>
-  </p>
+      <div class="col">
+      <div class="row">
 
-  <p>
-    <strong>Gebruiker:</strong>
-    <%= ticket.user.email %>
-  </p>
+        <div class="col my-auto">
+          <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= ticket.title.humanize %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
+        </div>
 
-  <p>
-    <strong>Label:</strong>
-    <%= ticket.label %>
-  </p>
+        <div class="col">
 
-  <div>
-    <p><strong>Status:</strong>
-    <%= ticket.status.humanize %> <span class="<%= "#{ticket.status.downcase}_status" %>">&#x2022;</span></p> 
+
+      </div>
+<div class="row">
+      <div class="col">
+        <p class="text-secondary font-weight-light small">
+          Toegewezen aan: <%= ticket.user.first_name + " " + ticket.user.last_name[0] + "." %>
+        </p>
+      </div>
+
+      <div class="col">
+        <p class="badge bg-light text-dark">
+          <%= ticket.label %>
+        </p>
+      </div>
+
+      <div class="col">
+      <p class="<%= ticket.priority.downcase %>_priority badge bg-light">
+          Priority <%= ticket.priority.capitalize %>
+      </p>
+      </div>
+
+      <div class="col">
+        <p>
+          <%= ticket.created_at.strftime("%d/%m/%Y") %>
+        </p>
+      </div>
+  </div>
   </div>
 
-    <p>
-    <strong>Priority:</strong>
-    <%= ticket.priority.humanize %>
-  </p>
-
-
+</div>
+</div>
 </div>

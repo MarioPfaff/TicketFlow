@@ -13,7 +13,10 @@ class User < ApplicationRecord
 
   after_commit :add_defualt_avatar, on: %i[create update]
   validate :password_complexity
-  has_many :tickets
+
+  # Relation to tickets
+  has_many :tickets 
+  
   attr_accessor :otp_plain_backup_codes
   has_one_attached :avatar
   # Generate an OTP secret it it does not already exist
@@ -59,7 +62,7 @@ class User < ApplicationRecord
 
   
   def avatar_thumbnail
-    avatar.variant(resize_to_limit: [150, 150]).processed if avatar.attached?
+    avatar.variant(resize_to_limit: [70, 70]).processed if avatar.attached?
   end
 
 

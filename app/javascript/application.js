@@ -5,3 +5,7 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

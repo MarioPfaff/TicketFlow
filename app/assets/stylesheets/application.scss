@@ -1,24 +1,7 @@
 @import "bootstrap";
 
-.wrapper {
-    display: flex;
-    width: 100%;
-}
-
-#sidebar {
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
-}
-
 .status, .open_status, .closed_status, .hold_status {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .open_status {
@@ -31,4 +14,30 @@
 
 .hold_status {
     color: orange;
+}
+
+.profile_image {
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+}
+
+.low_priority {
+    color: green;
+}
+
+.medium_priority {
+    color: rgb(0, 110, 255);
+}
+
+.high_priority {
+    color: rgb(255, 187, 0);
+}
+
+.urgent_priority {
+    color: rgb(255, 0, 0);
+}
+
+#tickets * {
+    align-items: center;
 }

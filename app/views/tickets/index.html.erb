@@ -1,14 +1,14 @@
+<div class="w-75">
 <p style="color: green"><%= notice %></p>
 
-<h1>Tickets</h1>
+<%= link_to "Maak een nieuwe ticket aan", new_ticket_path, class: "btn btn-primary mb-2 m-2" %>
 
-<div id="tickets">
+<div id="tickets" class="m-2">
   <% @tickets.each do |ticket| %>
     <%= render ticket %>
     <p>
-      <%= link_to "Bekijk de ticket", ticket %>
+      <%= link_to "Bekijk de ticket", ticket, class: "btn btn-primary mt-2 float-right" %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "Maak een nieuwe ticket aan", new_ticket_path %>
+</div>
