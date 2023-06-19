@@ -17,27 +17,62 @@
 }
 
 .profile_image {
-    border-radius: 100px;
+    border-radius: 200px;
     width: 40px;
     height: 40px;
 }
 
-.low_priority {
-    color: green;
+.low_priority, .medium_priority, .high_priority, .urgent_priority {
+    border-top: 1px solid lightgrey; 
+    border-bottom: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
 }
 
+.low_priority {
+    border-right: 7px solid rgb(0, 184, 0);
+}
 .medium_priority {
-    color: rgb(0, 110, 255);
+    border-right: 7px solid rgb(0, 110, 255);
+
 }
 
 .high_priority {
-    color: rgb(255, 187, 0);
+    border-right: 7px solid rgb(255, 187, 0);
 }
 
 .urgent_priority {
-    color: rgb(255, 0, 0);
+    border-right: 7px solid rgb(255, 0, 0);
 }
 
 #tickets * {
     align-items: center;
+}
+
+/* Anchor CSS Removal */
+
+a.nostyle {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.ticket-container:hover {
+    position: relative;
+    animation: left-hover 0.2s linear 0s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+}
+
+@keyframes left-hover {
+    from {
+        bottom: 0px; }
+
+    to {
+        bottom: 5px; }
 }

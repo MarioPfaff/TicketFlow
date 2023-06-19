@@ -1,22 +1,18 @@
 <div id="<%= dom_id ticket %>">
-  <div class="fluid-container">
-    <div class="row align-items-center border rounded shadow-sm m-0">      
+<%= link_to [ticket, anchor: :id], class: "nostyle" do %>
+  <div class="fluid-container mb-2 ticket-container" >
+    <div class="row align-items-center rounded shadow-sm m-0 pt-3 <%= ticket.priority.downcase+"_priority" %>">      
     <div class="col-1">
         <%= image_tag(ticket.user.avatar_thumbnail, class: "profile_image") %>
       </div> 
 
       <div class="col">
       <div class="row">
-
         <div class="col my-auto">
           <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= ticket.title.humanize %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
         </div>
 
-        <div class="col">
-
-
-      </div>
-<div class="row">
+<div class="row" >
       <div class="col">
         <p class="text-secondary font-weight-light small">
           Toegewezen aan: <%= ticket.user.first_name + " " + ticket.user.last_name[0] + "." %>
@@ -30,19 +26,16 @@
       </div>
 
       <div class="col">
-      <p class="<%= ticket.priority.downcase %>_priority badge bg-light">
-          Priority <%= ticket.priority.capitalize %>
-      </p>
-      </div>
-
-      <div class="col">
-        <p>
+        <p class="text-secondary font-weight-light small">
           <%= ticket.created_at.strftime("%d/%m/%Y") %>
         </p>
       </div>
   </div>
   </div>
+</a>
+
 
 </div>
 </div>
+<% end %>
 </div>

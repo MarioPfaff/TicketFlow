@@ -6,9 +6,6 @@
 <div id="tickets" class="m-2">
   <% @tickets.each do |ticket| %>
     <%= render ticket %>
-    <p>
-      <%= link_to "Bekijk de ticket", ticket, class: "btn btn-primary mt-2 float-right" %>
-    </p>
   <% end %>
 </div>
 </div>
