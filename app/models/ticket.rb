@@ -2,8 +2,8 @@ class Ticket < ApplicationRecord
     belongs_to :user, optional: true
     enum :status, {
         :open => 1,
-        :closed => 2,
-        :hold => 3
+        :hold => 2,
+        :closed => 3
     }
 
     enum :priority, {
@@ -11,6 +11,5 @@ class Ticket < ApplicationRecord
         :medium => 2,
         :high => 3,
         :urgent => 4
-    }
-    
+    }    
 end

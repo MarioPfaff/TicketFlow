@@ -1,41 +1,40 @@
 <div id="<%= dom_id ticket %>">
 <%= link_to [ticket, anchor: :id], class: "nostyle" do %>
-  <div class="fluid-container mb-2 ticket-container" >
-    <div class="row align-items-center rounded shadow-sm m-0 pt-3 <%= ticket.priority.downcase+"_priority" %>">      
+  <div class="fluid-container mb-3 ticket-container" >
+    <div class="row align-items-center rounded shadow-sm m-0 <%= ticket.priority.downcase+"_priority" %>">      
     <div class="col-1">
-        <%= image_tag(ticket.user.avatar_thumbnail, class: "profile_image") %>
+        <%= image_tag(ticket.user.avatar_thumbnail, class: "profile_image text-center") %>
       </div> 
 
       <div class="col">
-      <div class="row">
-        <div class="col my-auto">
-          <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= ticket.title.humanize %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
+      <div class="row w-85">
+        <div class="col-12 my-auto">
+          <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= truncate(ticket.title.humanize, :length => 35) %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
         </div>
 
 <div class="row" >
-      <div class="col">
+      <div class="col-4">
         <p class="text-secondary font-weight-light small">
           Toegewezen aan: <%= ticket.user.first_name + " " + ticket.user.last_name[0] + "." %>
         </p>
       </div>
 
-      <div class="col">
+      <div class="col-7">
         <p class="badge bg-light text-dark">
           <%= ticket.label %>
         </p>
       </div>
 
-      <div class="col">
+      <div class="col-1">
         <p class="text-secondary font-weight-light small">
           <%= ticket.created_at.strftime("%d/%m/%Y") %>
         </p>
       </div>
   </div>
   </div>
-</a>
+  <% end %>
 
 
 </div>
 </div>
-<% end %>
 </div>
