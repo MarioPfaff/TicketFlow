@@ -9,13 +9,13 @@
       <div class="col">
       <div class="row w-85">
         <div class="col-12 my-auto">
-          <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= truncate(ticket.title.humanize, :length => 35) %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
+          <span class="my-auto"><strong>#<%= ticket.id %></strong> <%= truncate(ticket.title.humanize, :length => 50) %> <span class="rounded-circle <%= "#{ticket.status.downcase}_status" %>" title="<%= ticket.status.humanize %>">&#8226;</span></span>
         </div>
 
 <div class="row" >
       <div class="col-4">
-        <p class="text-secondary font-weight-light small">
-          Toegewezen aan: <%= ticket.user.first_name + " " + ticket.user.last_name[0] + "." %>
+        <p class="font-weight-light small">
+          <strong>Medewerker</strong> <span class="text-secondary"><%= ticket.user.first_name + " " + ticket.user.last_name[0] + "." %></span>
         </p>
       </div>
 

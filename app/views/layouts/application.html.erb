@@ -8,15 +8,63 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   </head>
 
-  <body class="fluid-container">
-    <div class="coL">    
-      <%= link_to('Dashboard', root_path, class: 'btn btn-primary')%>
-      <%= link_to('Settings', edit_user_registration_path, class: 'btn btn-primary')%> 
-      <%= button_to('Log Out', destroy_user_session_path, class: 'btn btn-danger', method: :delete) %>
-    </div>
+  <body class="d-flex bg-white">
 
-    <%= yield %>
+  <div class="flex-shrink-0 p-3 bg-white sticky-top w-25 h-100 min-vh-100 border" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+          <i class="fa-solid fa-water"></i><span class="fs-5 fw-semibold text-center color-purple">TicketFlow</span>
+      </a>
+      <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            Home
+          </button>
+          <div class="collapse show" id="home-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded"><%= link_to('Ticket Dashboard', root_path, class: 'btn btn-primary')%></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+            Dashboard
+          </button>
+          <div class="collapse" id="dashboard-collapse" style="">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded">Overview</a></li>
+              <li><a href="#" class="link-dark rounded">Weekly</a></li>
+              <li><a href="#" class="link-dark rounded">Monthly</a></li>
+              <li><a href="#" class="link-dark rounded">Annually</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+          <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+            Account
+          </button>
+          <div class="collapse" id="account-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+              <li><a href="#" class="link-dark rounded"><%= link_to('Settings', edit_user_registration_path)%> </a></li>
+              <li><a href="#" class="link-dark rounded"><%= button_to('Log Out', destroy_user_session_path, method: :delete) %></a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>  
+      
+      <div class="col">    
+        <%= link_to('Dashboard', root_path, class: 'btn btn-primary')%>
+        <%= link_to('Settings', edit_user_registration_path, class: 'btn btn-primary')%> 
+        <%= button_to('Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-primary') %>
+      </div>
+    </div>
+  
+    
+
+
+      <%= yield %>
   </body>
 </html>

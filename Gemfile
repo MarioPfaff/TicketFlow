@@ -45,6 +45,7 @@ gem 'devise-two-factor'
 gem 'rqrcode'
 gem 'simple_form'
 gem 'devise_invitable'
+gem 'jquery-rails' #Required for bootstrap to work functionally
 
 # Our gems end here
 
